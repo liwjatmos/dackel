@@ -1,0 +1,21 @@
+{{#bs-navbar type=type fluid=true collapsed=collapsed onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
+  <div class="navbar-header">
+    {{navbar.toggle}}
+    <a href="/" class="navbar-brand">{{title}}</a>
+  </div>
+  {{#navbar.content}}
+    {{#navbar.nav class="navbar-right" as |nav|}}
+      {{#if home}}
+        {{#nav.item}}{{#dynamic-link params=home}}Home{{/dynamic-link}}{{/nav.item}}
+      {{/if}}
+      <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Support <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a target="_blank" href="https://support.datacite.org">Support Website</a></li>
+          <li><a target="_blank" href="mailto:support@datacite.org">Email Support</a></li>
+        </ul>
+      </li>
+      {{menu-links links=data.header_links class="dropdown"}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}

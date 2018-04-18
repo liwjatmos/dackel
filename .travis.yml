@@ -1,0 +1,60 @@
+---
+language: node_js
+node_js:
+  - "6"
+
+sudo: required
+
+cache:
+  yarn: true
+
+before_install:
+  - set -e
+  - if [ "${TRAVIS_TAG?}" ]; then
+      AWS_BUCKET="fastr.datacite.org";
+      AUTO_DEPLOY=true;
+    elif [ "$TRAVIS_BRANCH" == "master" ]; then
+      AWS_BUCKET="fastr.stage.datacite.org";
+      CLOUDFRONT_DISTRIBUTION_ID=$CLOUDFRONT_DISTRIBUTION_ID_STAGE;
+      AUTO_DEPLOY=true;
+    else
+      AUTO_DEPLOY=false;
+    fi
+  - npm config set spin false
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+install:
+  - yarn install --non-interactive
+  - sudo pip install awscli
+
+script:
+  # - COVERAGE=true yarn test
+  # - codeclimate-test-reporter < coverage/lcov.info
+
+  - ember build --environment=production
+
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: $AWS_BUCKET
+  region: eu-west-1
+  skip_cleanup: true
+  local_dir: dist
+  acl: public_read
+  cache_control: "no-cache"
+  on:
+    all_branches: true
+
+after_deploy:
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
+  # Allow `awscli` to make requests to CloudFront.
+  - aws configure set preview.cloudfront true
+  # Invalidate every object in the targeted distribution.
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+notifications:
+  slack: datacite:Wt8En0ALoTA6Kjc5EOKNDWxN
+  email: false
