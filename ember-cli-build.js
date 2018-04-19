@@ -9,6 +9,19 @@ module.exports = function(defaults) {
       includePolyfill: true
     },
 
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js']
+    },
+
+    minifyJS:  {
+      enabled: false
+    },
+
+    babel: {
+      sourceMaps: 'inline'
+    },
+
     'ember-bootstrap': {
       'bootstrapVersion': 3,
       'importBootstrapFont': false,

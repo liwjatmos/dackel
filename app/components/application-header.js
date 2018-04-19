@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import ENV from 'dackel/config/environment';
 import fetch from 'fetch';
-const { service } = Ember.inject;
 
 export default Ember.Component.extend({
   default: false,
@@ -10,12 +9,6 @@ export default Ember.Component.extend({
   home: '/',
   user: true,
   data: {},
-
-  actions: {
-    transitionNoAccess() {
-      this.get('router').transitionTo(this.get('home'));
-    }
-  },
 
   didInsertElement() {
     if (this.get('default')) {
