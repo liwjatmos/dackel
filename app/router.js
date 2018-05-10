@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('show', { path: '/:repository_id' });
+  this.route("about");
+
+  //set up all of your known routes, and then...
+  this.route("404", { path: "*path"});
 });
 
 export default Router;

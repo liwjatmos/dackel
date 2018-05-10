@@ -1,2 +1,50 @@
   {{application-header}}
-  {{landing-page}}
+
+  <div class="container-fluid">
+    <div class="content">
+      <div class='col-md-9 panel-list' id="content">
+        {{model-search model=model sortable=true}}
+
+        {{#if model}}
+          {{#each model as |repository|}}
+            <div class="panel panel-transparent">
+              <div class="panel-body">
+                <h3 class="work">
+                  {{#link-to "show" repository.id}}{{repository.repositoryName}}{{#if repository.additionalName}}<div class="subtitle">{{repository.additionalName.text}}</div>{{/if}}{{/link-to}}
+                </h3>
+
+                {{#if repository.description}}
+                  <div>{{repository.description}}</div>
+                {{/if}}
+
+                {{#if repository.subjects}}
+                  <h5>Subject Areas</h5>
+                  <div class="subject">
+                    {{#each repository.subjects as |sub|}}
+                      <span class="label label-primary label-sm">{{sub}}</span>
+                    {{/each}}
+                  </div>
+                {{/if}}
+              </div>
+              {{#if repository.repositoryUrl}}
+                <div class="panel-footer">
+                  <a href="{{repository.repositoryUrl}}">{{fa-icon "external-link"}} {{repository.repositoryUrl}}</a>
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+          <div class="text-center">
+            {{#if (gt model.meta.total_pages 1)}}
+              {{page-numbers content=model numPagesToShow=5 showFL=true}}
+            {{/if}}
+          </div>
+        {{else}}
+          {{#bs-alert dismissible=false type="warning"}}
+            No repositories found.
+          {{/bs-alert}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  
+  

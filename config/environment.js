@@ -18,17 +18,10 @@ module.exports = function(environment) {
       }
     },
 
-    SITE_TITLE: process.env.SITE_TITLE || "DataCite Repository Selector",
+    SITE_TITLE: process.env.SITE_TITLE || "Repository Finder",
     NAVMENU_TITLE: process.env.NAVMENU_TITLE,
-    SEARCH_URL: process.env.SEARCH_URL || "https://search.test.datacite.org",
-    ORCID_URL: process.env.ORCID_URL || "https://sandbox.orcid.org",
-    APP_URL: process.env.APP_URL || "https://app.test.datacite.org",
+    APP_URL: process.env.APP_URL || "https://api.test.datacite.org",
     CDN_URL: process.env.CDN_URL || "https://assets.test.datacite.org",
-    JWT_PUBLIC_KEY: process.env.JWT_PUBLIC_KEY || null,
-    JWT_PRIVATE_KEY: process.env.JWT_PRIVATE_KEY || null,
-    USER_UID: process.env.USER_UID || '0000-0001-5489-3594',
-    USER_ROLE_ID: process.env.USER_ROLE_ID || "user",
-    USER_NAME: process.env.USER_NAME || 'Josiah Carberry',
 
     APP: {
       // Here you can pass flags/options to your application instance
