@@ -30,16 +30,48 @@
                 </div>
               {{/if}}
 
+              {{#if model.keywords}}
+                <h5>Keywords</h5>
+                <div class="subject">
+                  {{#each model.keywords as |key|}}
+                    {{#link-to "index" (query-params query=key.text)}}<span class="label label-info label-sm">{{key.text}}</span>{{/link-to}}
+                  {{/each}}
+                </div>
+              {{/if}}
+
+              {{#if model.certificates}}
+                <h5>Certificates</h5>
+                {{#each model.certificates as |cert|}}
+                  {{cert.text}}<br/>
+                {{/each}}
+              {{/if}}
+
+              {{#if model.dataAccesses}}
+                <h5>Data Access</h5>
+                {{#each model.dataAccesses as |data|}}
+                  {{data.type}}<br/>
+                {{/each}}
+              {{/if}}
+
+              {{#if model.dataUploads}}
+                <h5>Data Upload</h5>
+                {{#each model.dataUploads as |data|}}
+                  {{data.type}}<br/>
+                {{/each}}
+              {{/if}}
+
+              {{#if model.pidSystems}}
+                <h5>Persistent Identifier</h5>
+                {{#each model.pidSystems as |pid|}}
+                  {{pid.text}}<br/>
+                {{/each}}
+              {{/if}}
+
               {{#if model.repositoryContacts}}
                 <h5>Contact</h5>
                 {{#each model.repositoryContacts as |contact|}}
                   <a href="{{contact.text}}">{{contact.text}}</a><br/>
                 {{/each}}
-              {{/if}}
-
-              {{#if model.startDate}}
-                <h5>Start Date</h5>
-                {{model.startDate}}
               {{/if}}
 
               {{#if model.types}}
@@ -65,6 +97,19 @@
         </div>
         <div class="col-md-3">
           <a href="https://www.re3data.org/repository/r3d{{model.id}}"><img class="img-responsive" src="{{model.badgeUrl}}"></a>
+          <div class="panel panel-transparent add">
+            <div class="panel-body metadata">
+              {{#if model.startDate}}
+                <h5>Start Date</h5>
+                {{format-time model.startDate year='numeric' month='long' day='numeric'}}
+              {{/if}}
+
+              {{#if model.endDate}}
+                <h5>End Date</h5>
+                {{format-time model.endDate year='numeric' month='long' day='numeric'}}
+              {{/if}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
