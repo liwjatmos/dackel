@@ -21,7 +21,7 @@
                   <h5>Subject Areas</h5>
                   <div class="subject">
                     {{#each repository.subjects as |sub|}}
-                      <span class="label label-primary label-sm">{{sub}}</span>
+                      {{subject-label subject=sub}}
                     {{/each}}
                   </div>
                 {{/if}}

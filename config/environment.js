@@ -22,6 +22,7 @@ module.exports = function(environment) {
     NAVMENU_TITLE: process.env.NAVMENU_TITLE,
     APP_URL: process.env.APP_URL || "https://api.test.datacite.org",
     CDN_URL: process.env.CDN_URL || "https://assets.test.datacite.org",
+    SUBJECT_FILTER: "34",
 
     APP: {
       // Here you can pass flags/options to your application instance

@@ -25,7 +25,7 @@
                 <h5>Subject Areas</h5>
                 <div class="subject">
                   {{#each model.subjects as |sub|}}
-                    <span class="label label-primary label-sm">{{sub}}</span>
+                    {{subject-label subject=sub}}
                   {{/each}}
                 </div>
               {{/if}}
@@ -40,6 +40,13 @@
               {{#if model.startDate}}
                 <h5>Start Date</h5>
                 {{model.startDate}}
+              {{/if}}
+
+              {{#if model.types}}
+                <h5>Repository Type</h5>
+                {{#each model.types as |type|}}
+                  {{type.text}}<br/>
+                {{/each}}
               {{/if}}
             </div>
 

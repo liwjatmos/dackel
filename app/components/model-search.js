@@ -15,10 +15,11 @@ export default Ember.Component.extend(RouteMixin, {
 
     this.set('query', this.get('model').get('otherParams.query'));
     this.set('sort', this.get('model').get('otherParams.sort'));
+    this.set('subject', this.get('model').get('otherParams.subject'));
   },
 
   search() {
-    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), sort: this.get('sort'), page: null, perPage: null });
+    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), sort: this.get('sort'), subject: this.get('subject'), page: null, perPage: null });
 
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",

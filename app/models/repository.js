@@ -7,7 +7,8 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   repositoryUrl: DS.attr('string'),
   repositoryContacts: DS.attr(),
-  subjects: DS.attr('subjects'),
+  subjects: DS.attr(),
+  types: DS.attr(),
   created: DS.attr('date'),
   updated: DS.attr('date'),
 

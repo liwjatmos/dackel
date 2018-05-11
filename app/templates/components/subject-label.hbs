@@ -1,0 +1,5 @@
+{{#if isGeosciences}}
+  {{#link-to "index" (query-params subject=category)}}<span class="label label-primary label-sm">{{text}}</span>{{/link-to}}
+{{else}}
+  <span class="label label-default label-sm">{{text}}</span>
+{{/if}}
