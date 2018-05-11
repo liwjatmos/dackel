@@ -11,11 +11,13 @@ cache:
 before_install:
   - set -e
   - if [ "${TRAVIS_TAG?}" ]; then
-      AWS_BUCKET="fastr.datacite.org";
+      AWS_BUCKET="repositoryfinder.datacite.org";
+      cp .env.production .env;
       AUTO_DEPLOY=true;
     elif [ "$TRAVIS_BRANCH" == "master" ]; then
-      AWS_BUCKET="fastr.stage.datacite.org";
+      AWS_BUCKET="repositoryfinder.stage.datacite.org";
       CLOUDFRONT_DISTRIBUTION_ID=$CLOUDFRONT_DISTRIBUTION_ID_STAGE;
+      cp .env.stage .env;
       AUTO_DEPLOY=true;
     else
       AUTO_DEPLOY=false;

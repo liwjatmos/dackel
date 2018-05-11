@@ -18,6 +18,25 @@ module.exports = function(environment) {
       }
     },
 
+    bugsnag: {
+      apiKey: process.env.BUGSNAG_API_KEY,
+      notifyReleaseStages: ['production', 'staging'],
+      releaseStage: process.env.BUGSNAG_RELEASE_STAGE
+    },
+    emberTracker: {
+			analyticsSettings: {
+				trackingId: process.env.TRACKING_ID || null,
+			},
+		},
+    flashMessageDefaults: {
+      timeout: 5000,
+      extendedTimeout: 0,
+      priority: 200,
+      sticky: true,
+      showProgress: true,
+      preventDuplicates: true
+    },
+
     SITE_TITLE: process.env.SITE_TITLE || "Repository Finder",
     NAVMENU_TITLE: process.env.NAVMENU_TITLE,
     APP_URL: process.env.APP_URL || "https://api.test.datacite.org",
