@@ -13,6 +13,7 @@ export default DS.Model.extend({
   dataAccesses: DS.attr(),
   dataUploads: DS.attr(),
   pidSystems: DS.attr(),
+  providerTypes: DS.attr(),
   types: DS.attr(),
   startDate: DS.attr('date'),
   endDate: DS.attr('date'),

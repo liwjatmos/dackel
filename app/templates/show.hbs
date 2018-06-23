@@ -45,7 +45,7 @@
                   {{cert.text}}<br/>
                 {{/each}}
               {{else}}
-                None
+                none
               {{/if}}
 
               {{#if model.dataAccesses}}
@@ -68,13 +68,20 @@
                   {{pid.text}}<br/>
                 {{/each}}
               {{else}}
-                None
+                none
               {{/if}}
 
               {{#if model.repositoryContacts}}
                 <h5>Contact</h5>
                 {{#each model.repositoryContacts as |contact|}}
                   <a href="{{contact.text}}">{{contact.text}}</a><br/>
+                {{/each}}
+              {{/if}}
+
+              {{#if model.providerTypes}}
+                <h5>Provider Type</h5>
+                {{#each model.providerTypes as |type|}}
+                  {{type.text}}<br/>
                 {{/each}}
               {{/if}}
 
