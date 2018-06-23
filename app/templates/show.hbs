@@ -39,11 +39,13 @@
                 </div>
               {{/if}}
 
+              <h5>Certificates</h5>
               {{#if model.certificates}}
-                <h5>Certificates</h5>
                 {{#each model.certificates as |cert|}}
                   {{cert.text}}<br/>
                 {{/each}}
+              {{else}}
+                None
               {{/if}}
 
               {{#if model.dataAccesses}}
@@ -60,11 +62,13 @@
                 {{/each}}
               {{/if}}
 
+              <h5>Persistent Identifier</h5>
               {{#if model.pidSystems}}
-                <h5>Persistent Identifier</h5>
                 {{#each model.pidSystems as |pid|}}
                   {{pid.text}}<br/>
                 {{/each}}
+              {{else}}
+                None
               {{/if}}
 
               {{#if model.repositoryContacts}}
