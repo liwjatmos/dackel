@@ -32,6 +32,7 @@ export default Ember.Component.extend(RouteMixin, {
   certified: true,
   pid: true,
   disciplinary: true,
+  collapsed: false,
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -88,6 +89,9 @@ export default Ember.Component.extend(RouteMixin, {
     sort(sort) {
       this.set('sort', sort);
       this.search();
+    },
+    toggle() {
+      this.set('collapsed', !this.get('collapsed'));
     }
   },
 

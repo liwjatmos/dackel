@@ -37,37 +37,39 @@
       <span class="help-block search-form">Narrow down the list of repositories by respository name, keyword, country, or any other repository information collected by re3data.</span>
     </form>
 
-    
-    <div class="form-group">
-      <label class="search-form">Other important criteria</label>
-      <div class="checkbox">
-        <label>
-          {{input type="checkbox" name="open" checked=open click=(action 'doOpen' value="target.checked")}} The repository provides open access to its data
-        </label>
-      </div>
-      <span class="help-block">Research data hosted by the repository are accessible without restrictions.</span>
+    <label class="search-form">Other important criteria</label> 
 
-      <div class="checkbox">
-        <label>
-          {{input type="checkbox" name="certified" checked=certified click=(action 'doCertified' value="target.checked")}} The repository has been certified
-        </label>
-      </div>
-      <span class="help-block">Certified repositories (e.g. via <a href="https://www.coretrustseal.org/">CoreTrustSeal</a>) fulfill a catalogue of requirements that reflect the core characteristics of a trustworthy data repository.</span>
+    {{#bs-collapse collapsed=collapsed}}
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="open" checked=open click=(action 'doOpen' value="target.checked")}} The repository provides open access to its data
+          </label>
+        </div>
+        <span class="help-block">Research data hosted by the repository are accessible without restrictions.</span>
 
-      <div class="checkbox">
-        <label>
-          {{input type="checkbox" name="pid" checked=pid click=(action 'doPid' value="target.checked")}} The repository uses persistent identifiers
-        </label>
-      </div>
-      <span class="help-block">Persistent identifiers uniquely identifier datasets, enable the linking to publications, authors and funding, and help with discovery.</span>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="certified" checked=certified click=(action 'doCertified' value="target.checked")}} The repository has been certified
+          </label>
+        </div>
+        <span class="help-block">Certified repositories (e.g. via <a href="https://www.coretrustseal.org/">CoreTrustSeal</a>) fulfill a catalogue of requirements that reflect the core characteristics of a trustworthy data repository.</span>
 
-      <div class="checkbox">
-        <label>
-          {{input type="checkbox" name="discplinary" checked=disciplinary click=(action 'doDisciplinary' value="target.checked")}} The repository is disciplinary
-        </label>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="pid" checked=pid click=(action 'doPid' value="target.checked")}} The repository uses persistent identifiers
+          </label>
+        </div>
+        <span class="help-block">Persistent identifiers uniquely identifier datasets, enable the linking to publications, authors and funding, and help with discovery.</span>
+
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="discplinary" checked=disciplinary click=(action 'doDisciplinary' value="target.checked")}} The repository is disciplinary
+          </label>
+        </div>
+        <span class="help-block">Disciplinary (subject) repositories host a collection of research outputs with a common link to a particular subject area, and have expertise in that subject area.</span>
       </div>
-      <span class="help-block">Disciplinary (subject) repositories host a collection of research outputs with a common link to a particular subject area, and have expertise in that subject area.</span>
-    </div>
+    {{/bs-collapse}}
 
     {{#if (gt model.meta.total 1)}}
       {{#if sortable}}
