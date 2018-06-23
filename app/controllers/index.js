@@ -1,8 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['query', 'sort', 'subject'],
+  queryParams: ['subject', 'query', 'open', 'certified', 'pid', 'disciplinary', 'sort', ],
+  subject: '34',
   query: '',
-  sort: 'relevance',
-  subject: '34'
+  open: 'true',
+  certified: 'true',
+  pid: 'true',
+  disciplinary: 'true',
+  sort: 'relevance'
 });
