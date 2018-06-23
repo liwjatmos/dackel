@@ -25,6 +25,15 @@
                     {{/each}}
                   </div>
                 {{/if}}
+
+                {{#if repository.keywords}}
+                  <h5>Keywords</h5>
+                  <div class="subject">
+                    {{#each repository.keywords as |key|}}
+                      {{#link-to "index" (query-params query=key.text)}}<span class="label label-info label-sm">{{key.text}}</span>{{/link-to}}
+                    {{/each}}
+                  </div>
+                {{/if}}
               </div>
               {{#if repository.repositoryUrl}}
                 <div class="panel-footer">
