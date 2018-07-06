@@ -31,7 +31,6 @@ export default Ember.Component.extend(RouteMixin, {
   open: true,
   certified: true,
   pid: true,
-  disciplinary: true,
   collapsed: false,
 
   didReceiveAttrs() {
@@ -44,7 +43,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   search() {
-    let params = Object.assign(this.get('model').get('otherParams'), { subject: this.get('subject'), query: this.get('query'), open: this.get('open'), certified: this.get('certified'), pid: this.get('pid'), disciplinary: this.get('disciplinary'), sort: this.get('sort'), page: null, perPage: null });
+    let params = Object.assign(this.get('model').get('otherParams'), { subject: this.get('subject'), query: this.get('query'), open: this.get('open'), certified: this.get('certified'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
 
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
@@ -77,10 +76,6 @@ export default Ember.Component.extend(RouteMixin, {
     },
     doPid(pid) {
       this.set('pid', pid);
-      this.search();
-    },
-    doDisciplinary(disciplinary) {
-      this.set('disciplinary', disciplinary);
       this.search();
     },
     clear() {
