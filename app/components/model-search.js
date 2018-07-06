@@ -56,7 +56,11 @@ export default Ember.Component.extend(RouteMixin, {
   actions: {
     doSubject(subject) {
       this.set('selectedSubject', subject);
-      this.set('subject', subject.id);
+      if (subject) {
+        this.set('subject', subject.id);
+      } else {
+        this.set('subject', '');
+      }
       this.search();
     },
     doSearch(query) {
