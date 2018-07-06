@@ -1,7 +1,7 @@
 {{#bs-navbar type=type fluid=true collapsed=collapsed onCollapse=(action (mut collapsed) true) onExpand=(action (mut collapsed) false) as |navbar|}}
   <div class="navbar-header">
     {{navbar.toggle}}
-    <a href="/" class="navbar-brand">{{title}}</a>
+    <a href="/" class="navbar-brand">{{title}} -<span class="repository-finder">Find an appropriate repository for your data</span></a>
   </div>
   {{#navbar.content}}
     {{#navbar.nav class="navbar-right" as |nav|}}
