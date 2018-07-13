@@ -39,17 +39,8 @@
                 </div>
               {{/if}}
 
-              <h5>Certificates</h5>
-              {{#if model.certificates}}
-                {{#each model.certificates as |cert|}}
-                  {{cert.text}}<br/>
-                {{/each}}
-              {{else}}
-                none
-              {{/if}}
-
               {{#if model.dataAccesses}}
-                <h5>Data Access</h5>
+                <h5>Data Access <div class="info-icon icons-open_access_active"/></h5>
                 {{#each model.dataAccesses as |data|}}
                   {{data.type}}<br/>
                 {{/each}}
@@ -62,7 +53,7 @@
                 {{/each}}
               {{/if}}
 
-              <h5>Persistent Identifier</h5>
+              <h5>Persistent Identifier <div class="info-icon icons-persistent_identifier_active"/></h5>
               {{#if model.pidSystems}}
                 {{#each model.pidSystems as |pid|}}
                   {{pid.text}}<br/>
@@ -71,11 +62,13 @@
                 none
               {{/if}}
 
-              {{#if model.repositoryContacts}}
-                <h5>Contact</h5>
-                {{#each model.repositoryContacts as |contact|}}
-                  <a href="{{contact.text}}">{{contact.text}}</a><br/>
+              <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
+              {{#if model.certificates}}
+                {{#each model.certificates as |cert|}}
+                  {{cert.text}}<br/>
                 {{/each}}
+              {{else}}
+                none
               {{/if}}
 
               {{#if model.providerTypes}}
@@ -89,6 +82,13 @@
                 <h5>Repository Type</h5>
                 {{#each model.types as |type|}}
                   {{type.text}}<br/>
+                {{/each}}
+              {{/if}}
+
+              {{#if model.repositoryContacts}}
+                <h5>Contact</h5>
+                {{#each model.repositoryContacts as |contact|}}
+                  <a href="{{contact.text}}">{{contact.text}}</a><br/>
                 {{/each}}
               {{/if}}
             </div>
