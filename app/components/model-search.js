@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
 const subjects = [
+  { id: "311", name: "Astronomy and Astrophysics" },
   { id: "34", name: "Geosciences (including Geography)" },
   { id: "313", name: "Atmospheric Science and Oceanography" },
   { id: "31301", name: "Atmospheric Science" },
