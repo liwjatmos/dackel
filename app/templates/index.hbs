@@ -16,6 +16,18 @@
           <div>{{repository.description}}</div>
         {{/if}}
 
+        {{#if repository.repositoryUrl}}
+          <h5>Repository URL</h5>
+          <a href="{{repository.repositoryUrl}}">{{fa-icon "external-link"}} {{repository.repositoryUrl}}</a>
+        {{/if}}
+
+        {{#if repository.repositoryContacts}}
+          <h5>Contact</h5>
+          {{#each repository.repositoryContacts as |contact|}}
+            <a href="{{contact.text}}">{{contact.text}}</a><br/>
+          {{/each}}
+        {{/if}}
+
         {{#if repository.subjects}}
           <h5>Subject Areas</h5>
           <div class="subject">
