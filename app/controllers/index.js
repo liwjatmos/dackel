@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   tag: '34',
   query: '',
   open: 'true',
-  certified: 'true',
+  certified: 'false',
   pid: 'true',
-  sort: 'relevance'
+  sort: 'name'
 });

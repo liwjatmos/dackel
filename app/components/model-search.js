@@ -64,6 +64,12 @@ export default Ember.Component.extend(RouteMixin, {
       this.search();
     },
     doSearch(query) {
+      if (query) {
+        this.set('sort', 'relevance');
+      } else if (this.get('sort') === 'relevance') {
+        this.set('sort', null);
+      }
+
       this.set('query', query);
       this.search();
     },
@@ -97,6 +103,6 @@ export default Ember.Component.extend(RouteMixin, {
 
   didInsertElement() {
     this.set('modelName', 'Repository');
-    this.set('formats', { relevance: 'Sort by Relevance', name: 'Sort by Name', '-created': 'Sort by Date Registered' });
+    this.set('formats', { name: 'Sort by Name', relevance: 'Sort by Relevance', '-created': 'Sort by Date Registered' });
   }
 });

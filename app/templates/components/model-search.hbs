@@ -12,4 +12,14 @@
   <span class="help-block search-form">Search for data repositories in re3data by respository name, keyword, country, or any other repository information collected by re3data.</span>
 </form>
 
-<h3 class="repository-results">{{pluralize (format-number model.meta.total) modelName}}</h3>
+{{#if (gt model.meta.total 1)}}
+  <div id="sort" class="input-group pull-right">
+    <select onchange={{action 'sort' value="target.value"}}>
+      {{#each-in formats as |key value|}}
+        <option name="sort" value={{key}} selected={{eq sort key}}>{{value}}</option>
+      {{/each-in}}
+    </select>
+  </div>
+
+  <h3 class="repository-results">{{pluralize (format-number model.meta.total) modelName}}</h3>
+{{/if}}
