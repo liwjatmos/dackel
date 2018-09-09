@@ -1,7 +1,5 @@
-<span class="help-block">The Repository Finder tool helps researchers in the Earth, Space, and Environmental Sciences find an appropriate repository to deposit their research data, using information about more than 2,000 data repositories from <a href="https://www.re3data.org">re3data</a>. The service is developed as part of the <a href="https://eos.org/agu-news/enabling-fair-data-across-the-earth-and-space-sciences">Enabling FAIR Data Project</a>.</span>
-
 <form {{action "doSearch" query on="submit"}} class="form-horizontal">
-  <label>Search for data repositories</label>
+  <label>Search <span class="btn-link">re3data{{#bs-tooltip placement="top" viewportPadding=10}}re3data (https://www.re3data.org) is a global registry of research data repositories.{{/bs-tooltip}}</span> for a repository for your data</label>
   <div id="search" class="input-group">
     {{input name="query" value=query class="form-control" placeholder='Type to search...' enter=(action 'doSearch')}}
     {{#if hasInput}}
@@ -13,50 +11,5 @@
   </div>
   <span class="help-block search-form">Search for data repositories in re3data by respository name, keyword, country, or any other repository information collected by re3data.</span>
 </form>
-
-<div class="form-group">
-  <label>Select the primary science domain of your research</label>
-  {{#power-select
-    options=subjects
-    selected=selectedSubject
-    onchange=(action "doSubject")
-    allowClear=true
-    as |subj|
-  }}
-    {{#if (lt subj.id 100)}}
-      <strong>{{subj.name}}</strong>
-    {{else if (lt subj.id 1000)}}
-      <strong>{{subj.name}}</strong>
-    {{else}}
-      {{subj.name}}
-    {{/if}}
-  {{/power-select}}
-  <span class="help-block">Pick the one subject area from the list of re3data subject areas for the Earth, Space, and Environmental Sciences that best describes your research.</span>
-</div>
-
-<label class="search-form">Filter repositories via criteria recommended by the <a href="https://eos.org/agu-news/enabling-fair-data-across-the-earth-and-space-sciences">Enabling FAIR Data Project</a></label> 
-
-<div class="form-group">
-  <div class="checkbox">
-    <label>
-      {{input type="checkbox" name="open" checked=open click=(action 'doOpen' value="target.checked")}} The repository provides open access to its data <div class="info-icon icons-open_access_active"/>
-    </label>
-  </div>
-  <span class="help-block">Research data hosted by the repository are accessible without restrictions.</span>
-
-  <div class="checkbox">
-    <label>
-      {{input type="checkbox" name="pid" checked=pid click=(action 'doPid' value="target.checked")}} The repository uses persistent identifiers <div class="info-icon icons-persistent_identifier_active"/>
-    </label>
-  </div>
-  <span class="help-block">Persistent identifiers uniquely identifier datasets, enable the linking to publications, authors and funding, and help with discovery.</span>
-
-  <div class="checkbox">
-    <label>
-      {{input type="checkbox" name="certified" checked=certified click=(action 'doCertified' value="target.checked")}} The repository has been certified <div class="info-icon icons-certificate_active"/>
-    </label>
-  </div>
-  <span class="help-block">Certified repositories (e.g. via <a href="https://www.coretrustseal.org/">CoreTrustSeal</a>) fulfill a catalogue of requirements for a trustworthy data repository.</span>
-</div>
 
 <h3 class="repository-results">{{pluralize (format-number model.meta.total) modelName}}</h3>

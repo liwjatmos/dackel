@@ -20,6 +20,8 @@ export default DS.Model.extend({
   created: DS.attr('date'),
   updated: DS.attr('date'),
 
+  // combine subject areas and keywords
+  tags: Ember.computed.union('subjects', 'keywords'),
   badgeUrl: Ember.computed('id', function() {
     return 'https://www.re3data.org/public/badges/s/light/' + this.get('id') + '.svg'
   }),

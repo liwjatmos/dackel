@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { inject as service } from '@ember/service';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
-const subjects = [
+const tags = [
   { id: "311", name: "Astronomy and Astrophysics" },
   { id: "34", name: "Geosciences (including Geography)" },
   { id: "313", name: "Atmospheric Science and Oceanography" },
@@ -24,9 +24,9 @@ export default Ember.Component.extend(RouteMixin, {
 
   hasInput: Ember.computed.notEmpty('query'),
   helpText: null,
-  subjects,
-  selectedSubject: null,
-  subject: null,
+  tags,
+  selectedTag: null,
+  tag: null,
   query: null,
   sort: null,
   open: true,
@@ -39,12 +39,12 @@ export default Ember.Component.extend(RouteMixin, {
 
     this.set('query', this.get('model').get('otherParams.query'));
     this.set('sort', this.get('model').get('otherParams.sort'));
-    this.set('subject', this.get('model').get('otherParams.subject'));
-    this.set('selectedSubject', subjects.findBy('id', this.get('subject')));
+    this.set('tag', this.get('model').get('otherParams.tag'));
+    this.set('selectedTag', tags.findBy('id', this.get('tag')));
   },
 
   search() {
-    let params = Object.assign(this.get('model').get('otherParams'), { subject: this.get('subject'), query: this.get('query'), open: this.get('open'), certified: this.get('certified'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
+    let params = Object.assign(this.get('model').get('otherParams'), { tag: this.get('tag'), query: this.get('query'), open: this.get('open'), certified: this.get('certified'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
 
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
@@ -54,12 +54,12 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   actions: {
-    doSubject(subject) {
-      this.set('selectedSubject', subject);
-      if (subject) {
-        this.set('subject', subject.id);
+    doTag(tag) {
+      this.set('selectedTag', tag);
+      if (tag) {
+        this.set('tag', tag.id);
       } else {
-        this.set('subject', '');
+        this.set('tag', '');
       }
       this.search();
     },
