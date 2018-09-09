@@ -8,7 +8,7 @@ const Router = Ember.Router.extend(GoogleAnalyticsRoute, {
 });
 
 Router.map(function() {
-  this.route('show', { path: '/:repository_id' });
+  this.route('index', { path: '/' });
   this.route("about");
 
   //set up all of your known routes, and then...
