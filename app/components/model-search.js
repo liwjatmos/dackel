@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import { inject as service } from '@ember/service';
+import ENV from 'dackel/config/environment';
+import fetch from 'fetch';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
+import customNotFoundTemplate from '../templates/search-templates/not-found';
 
 const tags = [
   { id: "311", name: "Astronomy and Astrophysics" },
@@ -30,9 +33,11 @@ export default Ember.Component.extend(RouteMixin, {
   query: null,
   sort: null,
   open: true,
-  certified: true,
+  certified: false,
   pid: true,
   collapsed: false,
+  term : null,
+  customNotFoundTemplate: customNotFoundTemplate,
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -41,6 +46,21 @@ export default Ember.Component.extend(RouteMixin, {
     this.set('sort', this.get('model').get('otherParams.sort'));
     this.set('tag', this.get('model').get('otherParams.tag'));
     this.set('selectedTag', tags.findBy('id', this.get('tag')));
+  },
+
+  suggest(query, syncResults, asyncResults) {
+    let url = ENV.APP_URL + '/repositories/suggest?query=' + query;
+    fetch(url).then(function(response) {
+      if (response.ok) {
+        response.json().then(function(data) {
+          asyncResults(data);
+        });
+      } else {
+        Ember.Logger.assert(false, response)
+      }
+    }).catch(function(error) {
+      Ember.Logger.assert(false, error)
+    });
   },
 
   search() {

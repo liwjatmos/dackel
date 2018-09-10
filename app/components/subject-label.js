@@ -7,11 +7,9 @@ export default Ember.Component.extend({
     let text = this.get('tag.text');
 
     if (text.match(/^\d/)) {
-      this.set('tag', text.substr(0, text.indexOf(" ")));
-      this.set('text', text.substr(text.indexOf(" ") + 1));
+      this.set('text', text.substr(text.indexOf(" ") + 1).toLowerCase());
     } else {
-      this.set('tag', text);
-      this.set('text', text);
+      this.set('text', text.toLowerCase());
     }
   }
 });

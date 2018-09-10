@@ -27,7 +27,7 @@ module.exports = function(environment) {
 			analyticsSettings: {
 				trackingId: process.env.TRACKING_ID || null,
 			},
-		},
+    },
     flashMessageDefaults: {
       timeout: 5000,
       extendedTimeout: 0,
