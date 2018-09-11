@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'span',
-  classNames: ['help-block'],
+  classNames: ['help-block', 'alert-repository'],
 
   didReceiveAttrs() {
     this._super(...arguments);

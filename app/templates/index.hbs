@@ -27,7 +27,9 @@
         {{repository-info model=repository}}
       {{/each}}
 
-      {{repository-message type="info"}}
+      {{#if (eq model.meta.page model.meta.total_pages)}}
+        {{repository-message type="info"}}
+      {{/if}}
 
       <div class="text-center">
         {{#if (gt model.meta.total_pages 1)}}
