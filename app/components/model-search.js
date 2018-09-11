@@ -54,9 +54,6 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   actions: {
-    doProject(project) {
-      this.set('project', project);
-    },
     doSearch(query) {
       if (query) {
         this.set('sort', 'relevance');
@@ -96,15 +93,13 @@ export default Ember.Component.extend(RouteMixin, {
         this.set('subject', null);
         this.set('open', false);
         this.set('pid', false);
+        this.set('collapsed', true);
       }
       this.search();
     },
     sort(sort) {
       this.set('sort', sort);
       this.search();
-    },
-    toggle() {
-      this.set('collapsed', !this.get('collapsed'));
     }
   },
 
