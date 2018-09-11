@@ -1,0 +1,82 @@
+<div class="repository-toggle">
+  {{#if collapsed}}
+    {{fa-icon "toggle-off"}} <button {{action "toggle"}} class="btn-link">More info about {{model.repositoryName}}</button>
+  {{else}}
+    {{fa-icon "toggle-on"}} <button {{action "toggle"}} class="btn-link">Less info</button>
+  {{/if}}
+</div>
+
+{{#bs-collapse collapsed=collapsed}}
+  {{#if model.repositoryUrl}}
+    <h5>Repository URL</h5>
+    <a href="{{model.repositoryUrl}}">{{fa-icon "external-link"}} {{model.repositoryUrl}}</a>
+  {{/if}}
+
+  {{#if model.repositoryContacts}}
+    <h5>Contact</h5>
+    {{#each model.repositoryContacts as |contact|}}
+      <a href="{{contact.text}}">{{contact.text}}</a><br/>
+    {{/each}}
+  {{/if}}
+
+  {{#if model.modelUrl}}
+    <h5>Repository URL</h5>
+    <a href="{{model.modelUrl}}">{{fa-icon "external-link"}} {{model.modelUrl}}</a>
+  {{/if}}
+
+  {{#if model.modelContacts}}
+    <h5>Contact</h5>
+    {{#each model.modelContacts as |contact|}}
+      <a href="{{contact.text}}">{{contact.text}}</a><br/>
+    {{/each}}
+  {{/if}}
+
+  {{#if model.dataAccesses}}
+    <h5>Data Access <div class="info-icon icons-open_access_active"/></h5>
+    {{#each model.dataAccesses as |data|}}
+      {{data.type}}<br/>
+    {{/each}}
+  {{/if}}
+
+  <h5>Persistent Identifier <div class="info-icon icons-persistent_identifier_active"/></h5>
+  {{#if model.pidSystems}}
+    {{#each model.pidSystems as |pid|}}
+      {{pid.text}}<br/>
+    {{/each}}
+  {{else}}
+    none
+  {{/if}}
+
+  <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
+  {{#if model.certificates}}
+    {{#each model.certificates as |cert|}}
+      {{cert.text}}<br/>
+    {{/each}}
+  {{else}}
+    none
+  {{/if}}
+
+  {{#if model.dataUploads}}
+    <h5>Data Upload</h5>
+    {{#each model.dataUploads as |data|}}
+      {{data.type}}<br/>
+    {{/each}}
+  {{/if}}
+
+  {{#if model.providerTypes}}
+    <h5>Provider Type</h5>
+    {{#each model.providerTypes as |type|}}
+      {{type.text}}<br/>
+    {{/each}}
+  {{/if}}
+
+  {{#if model.types}}
+    <h5>model Type</h5>
+    {{#each model.types as |type|}}
+      {{type.text}}<br/>
+    {{/each}}
+  {{/if}}
+
+  <br/>
+  {{model-info model=model}}
+{{/bs-collapse}}
