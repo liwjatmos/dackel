@@ -5,47 +5,27 @@ import fetch from 'fetch';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 import customNotFoundTemplate from '../templates/search-templates/not-found';
 
-const tags = [
-  { id: "311", name: "Astronomy and Astrophysics" },
-  { id: "34", name: "Geosciences (including Geography)" },
-  { id: "313", name: "Atmospheric Science and Oceanography" },
-  { id: "31301", name: "Atmospheric Science" },
-  { id: "31302", name: "Oceanography" },
-  { id: "314", name: "Geology and Palaeontology" },
-  { id: "315", name: "Geophysics and Geodesy" },
-  { id: "31501", name: "Geophysics" },
-  { id: "31502", name: "Geodesy, Photogrammetry, Remote Sensing, Geoinformatics, Cartography" },
-  { id: "316", name: "Geochemistry, Mineralogy and Crystallography" },
-  { id: "317", name: "Geography" },
-  { id: "31701", name: "Physical Geography" },
-  { id: "31702", name: "Human Geography" },
-  { id: "318", name: "Water Research" }
-];
-
 export default Ember.Component.extend(RouteMixin, {
   router: service(),
 
   hasInput: Ember.computed.notEmpty('query'),
   helpText: null,
-  tags,
-  selectedTag: null,
-  tag: null,
+  filter: 'all',
   query: null,
   sort: null,
-  open: true,
-  certified: false,
-  pid: true,
-  collapsed: false,
+  subject: null,
+  open: false,
+  pid: false,
   term : null,
   customNotFoundTemplate: customNotFoundTemplate,
+  collapsed: true,
+  notCollapsed: Ember.computed.not('collapsed'),
 
   didReceiveAttrs() {
     this._super(...arguments);
 
     this.set('query', this.get('model').get('otherParams.query'));
     this.set('sort', this.get('model').get('otherParams.sort'));
-    this.set('tag', this.get('model').get('otherParams.tag'));
-    this.set('selectedTag', tags.findBy('id', this.get('tag')));
   },
 
   suggest(query, syncResults, asyncResults) {
@@ -64,7 +44,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   search() {
-    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), open: this.get('open'), certified: this.get('certified'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
+    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
 
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
@@ -74,14 +54,8 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   actions: {
-    doTag(tag) {
-      this.set('selectedTag', tag);
-      if (tag) {
-        this.set('tag', tag.id);
-      } else {
-        this.set('tag', '');
-      }
-      this.search();
+    doProject(project) {
+      this.set('project', project);
     },
     doSearch(query) {
       if (query) {
@@ -93,12 +67,15 @@ export default Ember.Component.extend(RouteMixin, {
       this.set('query', query);
       this.search();
     },
-    doOpen(open) {
-      this.set('open', open);
+    toggle() {
+      this.set('collapsed', !this.get('collapsed'));
+    },
+    doSubject() {
+      this.set('subject', '34');
       this.search();
     },
-    doCertified(certified) {
-      this.set('certified', certified);
+    doOpen(open) {
+      this.set('open', open);
       this.search();
     },
     doPid(pid) {
@@ -109,8 +86,18 @@ export default Ember.Component.extend(RouteMixin, {
       this.set('query', '');
       this.search();
     },
-    selectMetadata(metadata) {
-      this.showMetadata(metadata);
+    selectFilter(filter) {
+      this.set('filter', filter);
+      if (filter === 'agu-fair') {
+        this.set('subject', '34');
+        this.set('open', true);
+        this.set('pid', true);
+      } else {
+        this.set('subject', null);
+        this.set('open', false);
+        this.set('pid', false);
+      }
+      this.search();
     },
     sort(sort) {
       this.set('sort', sort);
