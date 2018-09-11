@@ -39,7 +39,7 @@ module.exports = function(environment) {
 
     SITE_TITLE: process.env.SITE_TITLE || "Repository Finder",
     NAVMENU_TITLE: process.env.NAVMENU_TITLE,
-    APP_URL: process.env.APP_URL || "https://api.test.datacite.org",
+    API_URL: process.env.API_URL || "https://api.test.datacite.org",
     CDN_URL: process.env.CDN_URL || "https://assets.test.datacite.org",
     SUBJECT_FILTER: "34",
 

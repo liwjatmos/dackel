@@ -49,7 +49,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   suggest(query, syncResults, asyncResults) {
-    let url = ENV.APP_URL + '/repositories/suggest?query=' + query;
+    let url = ENV.API_URL + '/repositories/suggest?query=' + query;
     fetch(url).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
