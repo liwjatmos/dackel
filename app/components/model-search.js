@@ -16,6 +16,8 @@ export default Ember.Component.extend(RouteMixin, {
   subject: '',
   open: '',
   pid: '',
+  disabled: true,
+  notDisabled: Ember.computed.not('disabled'),
   term : null,
   customNotFoundTemplate: customNotFoundTemplate,
   collapsed: true,
@@ -71,6 +73,14 @@ export default Ember.Component.extend(RouteMixin, {
     },
     toggle() {
       this.set('collapsed', !this.get('collapsed'));
+    },
+    change() {
+      if (!this.get('disabled')) {
+        this.set('subject', '34');
+        this.set('open', true);
+        this.set('pid', true);
+      }
+      this.set('disabled', !this.get('disabled')); 
     },
     doSubject() {
       this.set('subject', '34');
