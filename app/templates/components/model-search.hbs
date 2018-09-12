@@ -57,14 +57,16 @@
   </div>
 </form>
 
-{{#if (gt model.meta.total 1)}}
-  <div id="sort" class="input-group pull-right">
-    <select onchange={{action 'sort' value="target.value"}}>
-      {{#each-in formats as |key value|}}
-        <option name="sort" value={{key}} selected={{eq sort key}}>{{value}}</option>
-      {{/each-in}}
-    </select>
-  </div>
+{{#if results}}
+  {{#if (gt model.meta.total 1)}}
+    <div id="sort" class="input-group pull-right">
+      <select onchange={{action 'sort' value="target.value"}}>
+        {{#each-in formats as |key value|}}
+          <option name="sort" value={{key}} selected={{eq sort key}}>{{value}}</option>
+        {{/each-in}}
+      </select>
+    </div>
 
-  <h3 class="repository-results">{{pluralize (format-number model.meta.total) modelName}}</h3>
+    <h3 class="repository-results">{{pluralize (format-number model.meta.total) modelName}}</h3>
+  {{/if}}
 {{/if}}

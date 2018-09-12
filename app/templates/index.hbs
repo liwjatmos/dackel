@@ -1,45 +1,38 @@
-{{application-header}}
+{{application-header type='transparent'}}
 
-<div class="container-fluid">
-  <div class='col-md-9 repository-finder'>
-    {{model-search model=model sortable=true}}
-
-    {{#if model}}
-      {{#each model as |repository|}}
-        <h3 class="member">
-          {{model-icons model=repository}}
-
-          {{repository.repositoryName}}{{#if repository.additionalName}}<div class="subtitle">{{repository.additionalName.text}}</div>{{/if}}
-        </h3>
-
-        {{#if repository.description}}
-          <div>{{repository.description}}</div>
-        {{/if}}
-
-        {{#if repository.tags}}
-          <div class="subject">
-            {{#each repository.tags as |tag|}}
-              {{subject-label tag=tag}}
-            {{/each}}
-          </div>
-        {{/if}}
-
-        {{repository-info model=repository}}
-      {{/each}}
-
-      {{#if (eq model.meta.page model.meta.total_pages)}}
-        {{repository-message type="info"}}
-      {{/if}}
-
-      <div class="text-center">
-        {{#if (gt model.meta.total_pages 1)}}
-          {{page-numbers content=model numPagesToShow=5 showFL=false}}
-        {{/if}}
+<div class="wrapper">
+  <div class="landing-header" style="background-image: url('https://assets.datacite.org/images/fastr/header.png');">
+    <div class="container-fluid">
+      <div class="motto">
+        <h1>Repository Finder</h1>
+        <p>Find a repository to upload your data.</p>
       </div>
-    {{else}}
-      {{repository-message type="warning"}}
-    {{/if}}
+    </div>
+  </div>
+
+  <div class="section section-white">
+    <div class="row row-section">
+      <div class="container-fluid">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p>Repository Finder can help you find an appropriate repository to deposit your research data. 
+            You can find repositories by searching by keywords or using the list of 
+            repositories recommended by the Enabling FAIR Data Project.</p>
+
+          <p>Repository Finder is a pilot project of the <a href="http://www.copdess.org/enabling-fair-data-project/">Enabling FAIR Data initiative</a> led by the American Geophysical Union (AGU) 
+          in partnership with DataCite and the earth and space sciences community. Enabling FAIR is supported by the Laura and John Arnold Foundation. 
+          The tool is hosted by DataCite and queries the re3data registry of research data repositories.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="section section-white">
+    <div class="row row-section">
+      <div class="container-fluid">
+        <div class="col-sm-8 col-sm-offset-2">
+          {{model-search model=model results=false}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-  
-  

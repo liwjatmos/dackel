@@ -21,6 +21,7 @@ export default Ember.Component.extend(RouteMixin, {
   term : null,
   customNotFoundTemplate: customNotFoundTemplate,
   collapsed: true,
+  results: false,
   notCollapsed: Ember.computed.not('collapsed'),
 
   didReceiveAttrs() {
@@ -52,7 +53,7 @@ export default Ember.Component.extend(RouteMixin, {
                             perPage: "page[size]",
                             total_pages: "total-pages" };
 
-    this.get('router').transitionTo('index', { queryParams: params });
+    this.get('router').transitionTo('search', { queryParams: params });
   },
 
   actions: {

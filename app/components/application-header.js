@@ -4,15 +4,17 @@ import fetch from 'fetch';
 
 export default Ember.Component.extend({
   default: false,
-  type: 'transparent',
+  type: null,
   title: null,
   home: '/',
   user: true,
   data: {},
 
   didInsertElement() {
-    this.set('type', null);
-    this.set('title', Ember.String.htmlSafe(ENV.SITE_TITLE));
+    //this.set('type', );
+    if (this.get('type') !== 'transparent') {
+      this.set('title', Ember.String.htmlSafe(ENV.SITE_TITLE));
+    }
 
     let url = ENV.CDN_URL + "/data/links.json";
     let self = this;

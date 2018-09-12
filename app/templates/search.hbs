@@ -1,0 +1,45 @@
+{{application-header}}
+
+<div class="container-fluid">
+  <div class='col-md-9 repository-finder'>
+    {{model-search model=model sortable=true}}
+
+    {{#if model}}
+      {{#each model as |repository|}}
+        <h3 class="member">
+          {{model-icons model=repository}}
+
+          {{repository.repositoryName}}{{#if repository.additionalName}}<div class="subtitle">{{repository.additionalName.text}}</div>{{/if}}
+        </h3>
+
+        {{#if repository.description}}
+          <div>{{repository.description}}</div>
+        {{/if}}
+
+        {{#if repository.tags}}
+          <div class="subject">
+            {{#each repository.tags as |tag|}}
+              {{subject-label tag=tag}}
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{repository-info model=repository}}
+      {{/each}}
+
+      {{#if (eq model.meta.page model.meta.total_pages)}}
+        {{repository-message type="info"}}
+      {{/if}}
+
+      <div class="text-center">
+        {{#if (gt model.meta.total_pages 1)}}
+          {{page-numbers content=model numPagesToShow=5 showFL=false}}
+        {{/if}}
+      </div>
+    {{else}}
+      {{repository-message type="warning"}}
+    {{/if}}
+  </div>
+</div>
+  
+  
