@@ -28,7 +28,7 @@
 
 <form {{action "doSearch" query on="submit"}} class="form-horizontal">
   <div id="search-repository" class="input-group">
-    {{aupac-typeahead action=(action (mut term))
+    {{aupac-typeahead action=(action "doTerm")
       class='form-control'
       selection=query
       source=suggest
@@ -38,9 +38,6 @@
       value=query
       notFoundTemplate=customNotFoundTemplate
       minLength=4}}
-    {{#if hasInput}}
-      <span id="search-clear-repo" title="Clear" aria-label="Clear" {{action 'clear'}}>{{fa-icon "times-circle"}}</span>
-    {{/if}}
     <div class="input-group-btn">
       <button type="submit" class="btn btn-primary hidden-xs">Search</button>
     </div>

@@ -64,6 +64,11 @@ export default Ember.Component.extend(RouteMixin, {
       this.set('query', query);
       this.search();
     },
+    doTerm(term) {
+      this.set('sort', 'relevance');
+      this.set('query', term);
+      this.search();
+    },
     toggle() {
       this.set('collapsed', !this.get('collapsed'));
     },
