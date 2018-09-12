@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'div',
   classNames: ['pull-right'],
-  certified: false,
+  certified: null,
 
   didReceiveAttrs() {
     this._super(...arguments);

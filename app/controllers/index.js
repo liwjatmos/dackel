@@ -1,10 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['query', 'subject', 'open', 'pid', 'sort', 'page', 'perPage'],
+  queryParams: ['query', 'subject', 'open', 'pid', 'sort'],
   query: '',
-  subject: null,
-  open: 'false',
-  pid: 'false',
+  subject: '',
+  open: '',
+  pid: '',
   sort: 'name'
 });

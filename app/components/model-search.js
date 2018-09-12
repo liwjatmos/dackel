@@ -11,11 +11,11 @@ export default Ember.Component.extend(RouteMixin, {
   hasInput: Ember.computed.notEmpty('query'),
   helpText: null,
   filter: 'all',
-  query: null,
+  query: '',
   sort: null,
-  subject: null,
-  open: false,
-  pid: false,
+  subject: '',
+  open: '',
+  pid: '',
   term : null,
   customNotFoundTemplate: customNotFoundTemplate,
   collapsed: true,
@@ -44,7 +44,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   search() {
-    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort'), page: null, perPage: null });
+    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort') });
 
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
@@ -87,12 +87,12 @@ export default Ember.Component.extend(RouteMixin, {
       this.set('filter', filter);
       if (filter === 'agu-fair') {
         this.set('subject', '34');
-        this.set('open', true);
-        this.set('pid', true);
+        this.set('open', 'true');
+        this.set('pid', 'true');
       } else {
-        this.set('subject', null);
-        this.set('open', false);
-        this.set('pid', false);
+        this.set('subject', '');
+        this.set('open', '');
+        this.set('pid', '');
         this.set('collapsed', true);
       }
       this.search();
