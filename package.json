@@ -46,6 +46,7 @@
     "ember-intl": "^2.33.1",
     "ember-load-initializers": "^1.0.0",
     "ember-power-select": "^2.0.3",
+    "ember-pluralize": "^0.2.0",
     "ember-radio-button": "^1.2.4",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.15.0",
