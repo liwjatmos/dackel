@@ -10,6 +10,7 @@ const Router = Ember.Router.extend(GoogleAnalyticsRoute, {
 Router.map(function() {
   this.route('index', { path: '/' });
   this.route("about");
+  this.route("faq");
 
   //set up all of your known routes, and then...
   this.route("404", { path: "*path"});
