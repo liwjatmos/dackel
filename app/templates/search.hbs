@@ -6,7 +6,7 @@
 
     {{#if model}}
       {{#each model as |repository|}}
-        <h3 class="member">
+        <h3 class="repository">
           {{model-icons model=repository}}
 
           {{repository.repositoryName}}{{#if repository.additionalName}}<div class="subtitle">{{repository.additionalName.text}}</div>{{/if}}
