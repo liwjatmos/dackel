@@ -7,6 +7,7 @@ import customNotFoundTemplate from '../templates/search-templates/not-found';
 
 export default Ember.Component.extend(RouteMixin, {
   router: service(),
+  store: service(),
 
   hasInput: Ember.computed.notEmpty('query'),
   helpText: null,
@@ -47,6 +48,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   search() {
+    this.get('store').unloadAll('repository');
     let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort') });
 
     params.paramMapping = { page: "page[number]",

@@ -4,7 +4,9 @@
   <div class='col-md-8 col-sm-offset-2 repository-finder'>
     {{model-search model=model sortable=true}}
 
-    {{#if model}}
+    {{ember-spinner lines=11 length=16 radius=30 width=8 rotate=10 speed='1.1' color='#6c797a'}}
+
+    {{#if (gt model.meta.total 0)}}
       {{#each model as |repository|}}
         <h3 class="repository">
           {{model-icons model=repository}}
@@ -31,11 +33,13 @@
         {{repository-message type="info"}}
       {{/if}}
 
-      <div class="text-center">
-        {{#if (gt model.meta.total_pages 1)}}
-          {{page-numbers content=model numPagesToShow=5 showFL=false}}
-        {{/if}}
-      </div>
+      {{#if model}}
+        <div class="text-center">
+          {{#if (gt model.meta.total_pages 1)}}
+            {{page-numbers content=model numPagesToShow=5 showFL=false}}
+          {{/if}}
+        </div>
+      {{/if}}
     {{else}}
       {{repository-message type="warning"}}
     {{/if}}
