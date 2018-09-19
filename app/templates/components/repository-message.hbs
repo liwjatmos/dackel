@@ -3,11 +3,12 @@
   <p>{{#if (eq type "warning")}}No repositories found. {{/if}}If a domain repository is not available for your kind of data, you may be able to use a general repository such as:</p>
   
   <ul>
-    <li>{{#link-to "index" (query-params query='100000044')}}Dryad{{/link-to}}</li>
-    <li>{{#link-to "index" (query-params query='100010066')}}Figshare{{/link-to}}</li>
-    <li>{{#link-to "index" (query-params query='100010051')}}Harvard Dataverse{{/link-to}}</li>
-    <li>{{#link-to "index" (query-params query='100011137')}}Open Science Framework{{/link-to}}</li>
-    <li>{{#link-to "index" (query-params query='100010468')}}Zenodo{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100000044')}}Dryad{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100010066')}}Figshare{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100010051')}}Harvard Dataverse{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100011868')}}Mendeley Data{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100011137')}}Open Science Framework{{/link-to}}</li>
+    <li>{{#link-to "search" (query-params query='100010468')}}Zenodo{{/link-to}}</li>
   </ul>
 
   <p>You may also have an institutional repository or other local resources at your organization available to you. 
