@@ -34,7 +34,7 @@
   {{#if model.dataAccesses}}
     <h5>Data Access <div class="info-icon icons-open_access_active"/></h5>
     {{#each model.dataAccesses as |data|}}
-      {{data.type}}<br/>
+      {{data.type}}{{#unless (eq data model.dataAccesses.lastObject)}} or {{/unless}}
     {{/each}}
   {{/if}}
 
@@ -49,8 +49,9 @@
 
   <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
   {{#if model.certificates}}
+    <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
     {{#each model.certificates as |cert|}}
-      {{cert.text}}<br/>
+      {{cert.text}}{{#unless (eq cert model.certificates.lastObject)}}, {{/unless}}
     {{/each}}
   {{else}}
     none
@@ -59,7 +60,14 @@
   {{#if model.dataUploads}}
     <h5>Data Upload</h5>
     {{#each model.dataUploads as |data|}}
-      {{data.type}}<br/>
+      {{#if (eq data.type "restricted")}}
+        {{data.type}}:
+        {{#each data.restrictions as |restriction index|}}
+          {{restriction.text}}{{#unless (eq restriction data.restrictions.lastObject)}}, {{/unless}}
+        {{/each}}
+      {{else}}
+        {{data.type}}
+      {{/if}}
     {{/each}}
   {{/if}}
 
