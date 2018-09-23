@@ -49,7 +49,6 @@
 
   <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
   {{#if model.certificates}}
-    <h5>Certificates <div class="info-icon icons-certificate_active"/></h5>
     {{#each model.certificates as |cert|}}
       {{cert.text}}{{#unless (eq cert model.certificates.lastObject)}}, {{/unless}}
     {{/each}}
