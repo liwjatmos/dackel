@@ -30,6 +30,9 @@ export default Ember.Component.extend(RouteMixin, {
 
     this.set('query', this.get('model').get('otherParams.query'));
     this.set('sort', this.get('model').get('otherParams.sort'));
+    if(this.get('model').get('isFulfilled') == true){
+      this.toggleProperty('isLoaded');
+    }
   },
 
   suggest(query, syncResults, asyncResults) {
@@ -67,6 +70,7 @@ export default Ember.Component.extend(RouteMixin, {
       }
 
       this.set('query', query);
+      this.set('isLoaded', false);
       this.search();
     },
     doTerm(term) {
