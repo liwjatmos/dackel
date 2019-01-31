@@ -8,7 +8,7 @@ export default Ember.Route.extend(RouteMixin, {
   model(params) {
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
-                            total_pages: "total-pages" };
+                            total_pages: "totalPages" };
 
     return this.findPaged('repository', params);
   },
