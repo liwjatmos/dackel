@@ -2,6 +2,8 @@
 'use strict';
 
 module.exports = function(environment) {
+  const pkg = require('../package.json');
+  
   let ENV = {
     modulePrefix: 'dackel',
     environment,
@@ -43,6 +45,8 @@ module.exports = function(environment) {
     CDN_URL: process.env.CDN_URL || "https://assets.test.datacite.org",
     SUBJECT_FILTER: "34",
     SENTRY_DSN: process.env.SENTRY_DSN || null,
+    VERSION: pkg.version,
+    APP_NAME: pkg.name,
 
     APP: {
       // Here you can pass flags/options to your application instance
