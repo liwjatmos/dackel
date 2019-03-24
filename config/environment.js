@@ -42,6 +42,7 @@ module.exports = function(environment) {
     API_URL: process.env.API_URL || "https://api.test.datacite.org",
     CDN_URL: process.env.CDN_URL || "https://assets.test.datacite.org",
     SUBJECT_FILTER: "34",
+    SENTRY_DSN: process.env.SENTRY_DSN || null,
 
     APP: {
       // Here you can pass flags/options to your application instance

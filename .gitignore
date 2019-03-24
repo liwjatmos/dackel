@@ -25,3 +25,4 @@ package.json.ember-try
 .env.deploy.*
 
 electron-out/
+package-lock.json

@@ -1,6 +1,6 @@
 {
   "name": "dackel",
-  "version": "0.9.14",
+  "version": "1.0",
   "description": "Dackel",
   "license": "MIT",
   "author": "",
@@ -60,6 +60,7 @@
   },
   "private": true,
   "dependencies": {
+    "@sentry/browser": "^4.6.5",
     "is-electron": "^2.1.0"
   }
 }
