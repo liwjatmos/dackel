@@ -36,7 +36,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   suggest(query, syncResults, asyncResults) {
-    let url = ENV.API_URL + '/repositories/suggest?query=' + query;
+    let url = ENV.API_URL + '/re3data/suggest?query=' + query;
     fetch(url).then(function(response) {
       if (response.ok) {
         response.json().then(function(data) {
@@ -51,7 +51,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   search() {
-    this.get('store').unloadAll('repository');
+    this.get('store').unloadAll('re3data');
     let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort') });
 
     params.paramMapping = { page: "page[number]",
@@ -126,7 +126,7 @@ export default Ember.Component.extend(RouteMixin, {
   },
 
   didInsertElement() {
-    this.set('modelName', 'Repository');
+    this.set('modelName', 'Re3data');
     this.set('formats', { name: 'Sort by Name', relevance: 'Sort by Relevance', '-created': 'Sort by Date Registered' });
   }
 });

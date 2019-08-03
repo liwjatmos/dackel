@@ -1,5 +1,10 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Inflector from 'ember-inflector';
+
+const inflector = Inflector.inflector;
+
+inflector.uncountable('re3data');
 
 export default DS.Model.extend({
   repositoryName: DS.attr('string'),

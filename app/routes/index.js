@@ -10,7 +10,7 @@ export default Ember.Route.extend(RouteMixin, {
                             perPage: "page[size]",
                             total_pages: "totalPages" };
 
-    return this.findPaged('repository', params);
+    return this.findPaged('re3data', params);
   },
 
   actions: {
