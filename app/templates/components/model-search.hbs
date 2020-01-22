@@ -30,16 +30,20 @@
   <div class="form-group">
     <div>{{radio-button value="all" groupValue=filter radioClass="radio" changed="selectFilter"}}Search <span class="btn-link">re3data{{#bs-tooltip placement="top" viewportPadding=10}}re3data (https://www.re3data.org) is a global registry of research data repositories.{{/bs-tooltip}}</span> for a repository to upload your data</div>
     <div>{{radio-button value="agu-fair" groupValue=filter radioClass="radio" changed="selectFilter"}}See the repositories in re3data that meet the criteria of the{{#if (eq filter "agu-fair")}}<button {{action "toggle"}} class="btn-link">Enabling FAIR Data Project {{#if collapsed}}{{fa-icon "toggle-off"}}{{else}}{{fa-icon "toggle-on"}}{{/if}}</button>{{else}} Enabling FAIR Data Project{{/if}}</div>
+    <div>{{radio-button value="fairs-fair" groupValue=filter radioClass="radio" changed="selectFilter"}}See the repositories in re3data that meet the criteria of the{{#if (eq filter "fairs-fair")}}<button {{action "toggle"}} class="btn-link">FairsFair Project {{#if collapsed}}{{fa-icon "toggle-off"}}{{else}}{{fa-icon "toggle-on"}}{{/if}}</button>{{else}} FairsFair Project{{/if}}</div>
+
   </div>
 
   {{#bs-collapse collapsed=collapsed}}
     <div class="form-group">
+      {{#if (eq filter "agu-fair")}}
       <div class="checkbox">
         <label>
           {{input type="checkbox" name="subject" disabled=disabled checked=subject click=(action 'doSubject' value="target.checked")}} The repository is a domain repository for the Earth, space and environmental sciences
         </label>
       </div>
       <span class="help-block">The repository has special expertise and is used by the community.</span>
+      {{/if}}
       <div class="checkbox">
         <label>
           {{input type="checkbox" name="open" disabled=disabled checked=open click=(action 'doOpen' value="target.checked")}} The repository provides open access to its data <div class="info-icon icons-open_access_active"/>
@@ -52,9 +56,17 @@
         </label>
       </div>
       <span class="help-block">Persistent identifiers such as DOIs uniquely identifier datasets, enable the linking to publications, and help with discovery.</span>
+      {{#if (eq filter "fairs-fair")}}
+      <div class="checkbox">
+        <label>
+          {{input type="checkbox" name="certified" disabled=disabled checked=certified click=(action 'doCertified' value="target.checked")}} The repository is certified<div class="info-icon icons-certificate_active"/>
+        </label>
+      </div>
+      <span class="help-block">Certifications make sure repositories follow community standards and best practices</span>
+      {{/if}}
     </div>
 
-    {{#if (eq filter "agu-fair")}}
+    {{#if (or (eq filter "agu-fair") (eq filter "fairs-fair"))}}
       <button {{action "change"}} class="btn btn-sm">{{#if disabled}}Change criteria for this search {{fa-icon "pencil"}}{{else}}Reset criteria for this search {{fa-icon "undo"}}{{/if}}</button>
 
       <div class="alert-repository">

@@ -17,6 +17,7 @@ export default Ember.Component.extend(RouteMixin, {
   subject: '',
   open: '',
   pid: '',
+  certified: '',
   disabled: true,
   notDisabled: Ember.computed.not('disabled'),
   term : null,
@@ -52,8 +53,7 @@ export default Ember.Component.extend(RouteMixin, {
 
   search() {
     this.get('store').unloadAll('re3data');
-    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), sort: this.get('sort') });
-
+    let params = Object.assign(this.get('model').get('otherParams'), { query: this.get('query'), subject: this.get('subject'), open: this.get('open'), pid: this.get('pid'), certified: this.get('certified'), sort: this.get('sort') });
     params.paramMapping = { page: "page[number]",
                             perPage: "page[size]",
                             total_pages: "totalPages" };
@@ -86,6 +86,7 @@ export default Ember.Component.extend(RouteMixin, {
         this.set('subject', '34');
         this.set('open', true);
         this.set('pid', true);
+        this.set('certified', true);
       }
       this.set('disabled', !this.get('disabled')); 
     },
@@ -101,6 +102,10 @@ export default Ember.Component.extend(RouteMixin, {
       this.set('pid', pid);
       this.search();
     },
+    doCertified(certified) {
+      this.set('certified', certified);
+      this.search();
+    },
     clear() {
       this.set('query', '');
       this.search();
@@ -111,10 +116,19 @@ export default Ember.Component.extend(RouteMixin, {
         this.set('subject', '34');
         this.set('open', 'true');
         this.set('pid', 'true');
-      } else {
+        this.set('certified', '');
+      }
+      else if (filter === 'fairs-fair') {
+        this.set('subject', '');
+        this.set('open', 'true');
+        this.set('pid', 'true');
+        this.set('certified', 'true');
+      } 
+      else {
         this.set('subject', '');
         this.set('open', '');
         this.set('pid', '');
+        this.set('certified', '');
         this.set('collapsed', true);
       }
       this.search();
